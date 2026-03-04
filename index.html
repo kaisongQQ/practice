@@ -327,7 +327,7 @@
       cells: []
     };
 
-    let state = loadState();
+    let state = structuredClone(defaultState);
 
     // =====================================================
     // DOM
@@ -362,24 +362,11 @@
       }
     }
 
-    function saveState(){
-      localStorage.setItem(CONFIG.storageKey, JSON.stringify(state));
-    }
+    function saveState(){ /* no-op */ }
 
     function loadState(){
-      try{
-        const raw = localStorage.getItem(CONFIG.storageKey);
-        if (!raw) return structuredClone(defaultState);
-        const parsed = JSON.parse(raw);
-        return {
-          ...structuredClone(defaultState),
-          ...parsed,
-          palette: Array.isArray(parsed.palette) && parsed.palette.length ? parsed.palette : structuredClone(defaultState.palette)
-        };
-      } catch {
-        return structuredClone(defaultState);
-      }
-    }
+  return structuredClone(defaultState);
+}
 
     function paletteColorByValue(v){
       if (!v) return '#ffffff';
