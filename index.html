@@ -322,7 +322,6 @@
           <table id="matrix" aria-label="취향표"></table>
         </div>
       </div>
-    </div>
 
     <div style="height:16px"></div>
 
@@ -363,7 +362,7 @@
         ['낭틴','낭젯','낭쮼','낭셩',''],
       ],
       diagonalClickable: false,
-      storageKey: 'cortis_pref_matrix_v3'
+      storageKey: 'cortis_pref_matrix_v2'
     };
 
     // =====================================================
@@ -429,10 +428,7 @@
         return {
           ...structuredClone(defaultState),
           ...parsed,
-          palette:
-            Array.isArray(parsed.palette) && parsed.palette.length >= defaultState.palette.length
-              ? parsed.palette
-              : structuredClone(defaultState.palette)
+          palette: Array.isArray(parsed.palette) && parsed.palette.length ? parsed.palette : structuredClone(defaultState.palette)
         };
       } catch {
         return structuredClone(defaultState);
